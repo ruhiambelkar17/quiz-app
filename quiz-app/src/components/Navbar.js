@@ -5,9 +5,12 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary shadow ">
       <div className="container-fluid">
-        <Link to="/">
-          <p className="navbar-brand ms-5 text-style">QuizVerse</p>
-        </Link>
+      
+          <a className="navbar-brand ms-5 text-style"  >
+            <Link to={'/'}>
+            QuizVerse</Link>
+          </a>
+     
         <button
           className="navbar-toggler"
           type="button"

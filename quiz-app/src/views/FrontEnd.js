@@ -5,7 +5,8 @@ import Clock1 from "../assets/images/clock1.jpg"
 function QuizInfoCard(props) {
   return (
     
-      <div className="card mb-3">
+     <div className="col-md-4">
+       <div className="card mb-3">
         <div className="card-body">
           <div className="d-flex justify-content-between">
           <h5 className="card-title">{props.language}</h5>
@@ -23,6 +24,7 @@ function QuizInfoCard(props) {
           </a>
         </div>
       </div>
+     </div>
    
   );
 }
@@ -43,18 +45,46 @@ function FrontEnd() {
       cardImg: "",
       questions: "20",
     },
+    {
+      language: "HTML",
+      level: "Advanced",
+      time: "30mins",
+      cardImg: "",
+      questions: "15",
+    },
+    {
+      language: "CSS",
+      level: "Beginner",
+      time: "30mins",
+      cardImg: "",
+      questions: "30",
+    },
+    {
+      language: "CSS",
+      level: "Intermediate",
+      time: "30mins",
+      cardImg: "",
+      questions: "20",
+    },
+    {
+      language: "CSS",
+      level: "Advanced",
+      time: "30mins",
+      cardImg: "",
+      questions: "15",
+    },
   ];
   return (
     <div style={{ backgroundColor: "#F4FFFE" }}>
       <Navbar />
       <div className="m-3">
         <div className="row">
-          <div className="col-md-3">
+          
             {quizInfo.map(QuizInfoCard)}
             {/* {quizInfo.map(item=>{
             return <QuizInfoCard language={item.language} level={item.level} time={item.time} questions={item.questions} cardImg={item.cardImg} />
           })} */}
-          </div>          
+                  
         </div>
       </div>
     </div>
