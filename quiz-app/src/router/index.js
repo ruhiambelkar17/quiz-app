@@ -5,6 +5,7 @@ import AboutUs from "../views/AboutUs";
 import GetById from "../views/GetById";
 import FrontEnd from "../views/FrontEnd";
 import Home from "../views/Home"
+import QuizLayout from "../views/QuizLayout";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/front-end-development",
     element: <FrontEnd />,
+  },
+  {
+    path: "/quiz",
+    element: <QuizLayout />,
   },
 
   {

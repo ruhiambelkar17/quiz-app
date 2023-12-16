@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import Clock1 from "../assets/images/clock1.jpg"
+import Clock1 from "../assets/images/clock1.jpg";
+import { Link } from "react-router-dom";
 
 function QuizInfoCard(props) {
   return (
@@ -19,9 +20,10 @@ function QuizInfoCard(props) {
             </div>
             <p>Level:{props.level}</p>
           </p>
-          <a href="#link" style={{backgroundColor:'#056D61',border:'#056D61'}} className="btn btn-primary">
+          {/* <a href="#link" style={{backgroundColor:'#056D61',border:'#056D61'}} className="btn btn-primary">
             Start
-          </a>
+          </a> */}
+          <Link to={'/quiz'} style={{backgroundColor:'#056D61',border:'#056D61'}} className="btn btn-primary" >Start</Link>
         </div>
       </div>
      </div>
