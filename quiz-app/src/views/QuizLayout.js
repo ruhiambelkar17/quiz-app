@@ -4,7 +4,10 @@ function QuizLayout() {
   return (
     <div>
       <Navbar />
-      <div style={{ backgroundColor: "#F4FFFE" }} className="d-flex justify-content-center " >
+      <div
+        style={{ backgroundColor: "#F4FFFE" }}
+        className="d-flex justify-content-center "
+      >
         <div className="card w-75 my-5">
           <div className="card-body">
             <div className="d-flex justify-content-between">
@@ -13,17 +16,24 @@ function QuizLayout() {
             </div>
             <p className="card-text">
               <div className="d-flex justify-content-between">
-                <p>No. Questions: </p>
+                <p>Q.1 What does the abbreviation HTML stand for?</p>
               </div>
-              <p>Level:</p>
+              <ul className="lh-5">
+                <li className="mb-2">HyperText Markup Language</li>
+                <li className="mb-2">HightText Markup Language</li>
+                <li className="mb-2">HightText Markdown Language</li>
+                <li className="mb-2">None of the above</li>
+              </ul>
             </p>
-            <a
-              href="#link"
-              style={{ backgroundColor: "#056D61", border: "#056D61" }}
-              className="btn btn-primary"
-            >
-              Start
-            </a>
+            <div className="card-footer text-body-secondary d-flex justify-content-end">
+              <a
+                href="#link"
+                style={{ backgroundColor: "#056D61", border: "#056D61" }}
+                className="btn btn-primary"
+              >
+                Next
+              </a>
+            </div>
           </div>
         </div>
       </div>
