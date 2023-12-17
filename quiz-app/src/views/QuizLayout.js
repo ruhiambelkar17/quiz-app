@@ -13,7 +13,7 @@ function QuizLayout() {
           <div className="card-body">
             <div className="d-flex justify-content-between">
               <h5 className="card-title"></h5>
-              <p>Time: <Timer /> </p>
+              <div className="d-inline-flex"><p>Time:</p><Timer /></div> 
             </div>
             <p className="card-text">
               <div className="d-flex justify-content-between">
