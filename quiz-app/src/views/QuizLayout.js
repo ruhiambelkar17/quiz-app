@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
+import Timer from "../components/Timer";
 
 function QuizLayout() {
   return (
@@ -12,7 +13,7 @@ function QuizLayout() {
           <div className="card-body">
             <div className="d-flex justify-content-between">
               <h5 className="card-title"></h5>
-              <p>Time:</p>
+              <p>Time: <Timer /> </p>
             </div>
             <p className="card-text">
               <div className="d-flex justify-content-between">
