@@ -4,16 +4,18 @@ import { useState } from "react";
 
 function QuizLayout() {
     const [timerNewVal,setTimerNewVal]=useState("");
-    const [isTimerStopped,setTimerFlag]=useState(false);
+    //const [isTimerStopped,setTimerFlag]=useState(false);
 
     function updateTimer(timerVal){
         setTimerNewVal(timerVal);
         
     }
 
-    // if(timerNewVal===0){
-    //     setTimerFlag(true);
-    // }
+    function goToNextQue(){
+
+    }
+
+    
   return (
     <div>
       <Navbar />
@@ -26,7 +28,7 @@ function QuizLayout() {
             <div className="d-flex justify-content-between">
              
               <div className="d-inline-flex">
-                <p>Time:</p>{timerNewVal}
+                <p>Time:</p>
                 <Timer onUpdateTimer={updateTimer} />
               </div>
             </div>
@@ -49,7 +51,7 @@ function QuizLayout() {
                   disabled={timerNewVal === 0 ? true: false}
                 />
                 <label class="form-check-label" for="flexRadioDefault1">
-                  Default radio{isTimerStopped}
+                HyperText Markup Language
                 </label>
               </div>
               <div class="form-check">
@@ -61,7 +63,7 @@ function QuizLayout() {
                   disabled={timerNewVal === 0 ? true: false}
                 />
                 <label class="form-check-label" for="flexRadioDefault2">
-                  Default checked radio
+                HightText Markup Language
                 </label>
               </div>
               <div class="form-check">
@@ -73,7 +75,7 @@ function QuizLayout() {
                   disabled={timerNewVal === 0 ? true: false}
                 />
                 <label class="form-check-label" for="flexRadioDefault3">
-                  Default radio
+                HightText Markdown Language
                 </label>
               </div>
               <div class="form-check">
@@ -85,7 +87,7 @@ function QuizLayout() {
                   disabled={timerNewVal === 0 ? true: false}
                 />
                 <label class="form-check-label" for="flexRadioDefault4">
-                  Default checked radio
+                None of the above
                 </label>
               </div>
             </p>
@@ -94,6 +96,7 @@ function QuizLayout() {
                 href="#link"
                 style={{ backgroundColor: "#056D61", border: "#056D61" }}
                 className="btn btn-primary"
+                onClick={goToNextQue}
               >
                 Next
               </a>
