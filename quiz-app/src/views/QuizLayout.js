@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import Timer from "../components/Timer";
+import Result from "./Result";
 import { useState } from "react";
 
 function QuizLayout() {
@@ -103,6 +104,7 @@ function QuizLayout() {
             </div>
           </div>
         </div>
+        <Result />
       </div>
     </div>
   );
