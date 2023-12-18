@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 // views
 import AboutUs from "../views/AboutUs";
+import Result from "../views/Result";
 import GetById from "../views/GetById";
 import FrontEnd from "../views/FrontEnd";
 import Home from "../views/Home"
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/quiz",
     element: <QuizLayout />,
+  },
+  {
+    path: "/result",
+    element: <Result />,
   },
 
   {

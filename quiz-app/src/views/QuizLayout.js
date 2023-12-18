@@ -104,7 +104,7 @@ function QuizLayout() {
             </div>
           </div>
         </div>
-        <Result />
+        
       </div>
     </div>
   );
