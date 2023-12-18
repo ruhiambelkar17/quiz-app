@@ -4,10 +4,16 @@ import { useState } from "react";
 
 function QuizLayout() {
     const [timerNewVal,setTimerNewVal]=useState("");
+    const [isTimerStopped,setTimerFlag]=useState(false);
 
     function updateTimer(timerVal){
         setTimerNewVal(timerVal);
+        
     }
+
+    // if(timerNewVal===0){
+    //     setTimerFlag(true);
+    // }
   return (
     <div>
       <Navbar />
@@ -18,7 +24,7 @@ function QuizLayout() {
         <div className="card w-75 my-5">
           <div className="card-body">
             <div className="d-flex justify-content-between">
-              <h5 className="card-title"></h5>
+             
               <div className="d-inline-flex">
                 <p>Time:</p>{timerNewVal}
                 <Timer onUpdateTimer={updateTimer} />
@@ -40,9 +46,10 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault1"
+                  disabled={timerNewVal === 0 ? true: false}
                 />
                 <label class="form-check-label" for="flexRadioDefault1">
-                  Default radio
+                  Default radio{isTimerStopped}
                 </label>
               </div>
               <div class="form-check">
@@ -51,7 +58,7 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault2"
-                  checked
+                  disabled={timerNewVal === 0 ? true: false}
                 />
                 <label class="form-check-label" for="flexRadioDefault2">
                   Default checked radio
@@ -63,6 +70,7 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault3"
+                  disabled={timerNewVal === 0 ? true: false}
                 />
                 <label class="form-check-label" for="flexRadioDefault3">
                   Default radio
@@ -74,7 +82,7 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault4"
-                  checked
+                  disabled={timerNewVal === 0 ? true: false}
                 />
                 <label class="form-check-label" for="flexRadioDefault4">
                   Default checked radio
