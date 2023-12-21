@@ -1,11 +1,22 @@
 import Navbar from "../components/Navbar";
 import Timer from "../components/Timer";
-import Result from "./Result";
 import { useState } from "react";
 
 function QuizLayout() {
     const [timerNewVal,setTimerNewVal]=useState("");
-    //const [isTimerStopped,setTimerFlag]=useState(false);
+    let [counter,setCounter]=useState(0);
+
+    const queList=[
+        {que:"What is the correct syntax of doctype in HTML5?",
+    options:["</doctype html>","<doctype html>","<doctype html!>","<!doctype html>"]},
+    {que:"What is the correct syntax of doctype in HTML5?",
+    options:["</doctype html>","<doctype html>","<doctype html!>","<!doctype html>"]},
+    {que:"What is the correct syntax of doctype in HTML5?",
+    options:["</doctype html>","<doctype html>","<doctype html!>","<!doctype html>"]},
+    {que:"What is the correct syntax of doctype in HTML5?",
+    options:["</doctype html>","<doctype html>","<doctype html!>","<!doctype html>"]}
+    ];
+
 
     function updateTimer(timerVal){
         setTimerNewVal(timerVal);
@@ -13,7 +24,8 @@ function QuizLayout() {
     }
 
     function goToNextQue(){
-
+        console.log("next que")
+        setCounter(counter+1);
     }
 
     
@@ -35,7 +47,7 @@ function QuizLayout() {
             </div>
             <p className="card-text">
               <div className="d-flex justify-content-between">
-                <p>Q.1 What does the abbreviation HTML stand for?</p>
+                <p>Q.{counter} {queList[counter].que}</p>
               </div>
               {/* <ul className="lh-5">
                 <li className="mb-2">HyperText Markup Language</li>
@@ -93,14 +105,14 @@ function QuizLayout() {
               </div>
             </p>
             <div className="card-footer text-body-secondary d-flex justify-content-end">
-              <a
-                href="#link"
+              <button
+                type="button"
                 style={{ backgroundColor: "#056D61", border: "#056D61" }}
                 className="btn btn-primary"
                 onClick={goToNextQue}
               >
                 Next
-              </a>
+              </button>
             </div>
           </div>
         </div>
