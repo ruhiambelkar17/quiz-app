@@ -24,8 +24,13 @@ function QuizLayout() {
     }
 
     function goToNextQue(){
-        console.log("next que")
-        setCounter(counter+1);
+        console.log(counter)
+        if(counter<queList.length-1){
+            setCounter(counter+1);
+        }
+        else {
+            counter=counter;
+        }
     }
 
     
@@ -47,7 +52,7 @@ function QuizLayout() {
             </div>
             <p className="card-text">
               <div className="d-flex justify-content-between">
-                <p>Q.{counter} {queList[counter].que}</p>
+                <p>Q.{counter+1} {queList[counter].que}</p>
               </div>
               {/* <ul className="lh-5">
                 <li className="mb-2">HyperText Markup Language</li>
