@@ -9,12 +9,12 @@ function QuizLayout() {
     const queList=[
         {que:"What is the correct syntax of doctype in HTML5?",
     options:["</doctype html>","<doctype html>","<doctype html!>","<!doctype html>"]},
-    {que:"What is the correct syntax of doctype in HTML5?",
-    options:["</doctype html>","<doctype html>","<doctype html!>","<!doctype html>"]},
-    {que:"What is the correct syntax of doctype in HTML5?",
-    options:["</doctype html>","<doctype html>","<doctype html!>","<!doctype html>"]},
-    {que:"What is the correct syntax of doctype in HTML5?",
-    options:["</doctype html>","<doctype html>","<doctype html!>","<!doctype html>"]}
+    {que:"Which of the following is used to read an HTML page and render it?",
+    options:["Web server","Web network","Web browser","Web matrix"]},
+    {que:"Which of the following tag is used for inserting the largest heading in HTML?",
+    options:["<h1>","<head>","<h6>>","<heading>"]},
+    {que:"n which part of the HTML metadata is contained?",
+    options:["head tag","title tag","html tag","body tag"]}
     ];
 
 
@@ -69,7 +69,7 @@ function QuizLayout() {
                   disabled={timerNewVal === 0 ? true: false}
                 />
                 <label class="form-check-label" for="flexRadioDefault1">
-                HyperText Markup Language
+                {queList[counter].options[0]}
                 </label>
               </div>
               <div class="form-check">
@@ -81,7 +81,7 @@ function QuizLayout() {
                   disabled={timerNewVal === 0 ? true: false}
                 />
                 <label class="form-check-label" for="flexRadioDefault2">
-                HightText Markup Language
+                {queList[counter].options[1]}
                 </label>
               </div>
               <div class="form-check">
@@ -93,7 +93,7 @@ function QuizLayout() {
                   disabled={timerNewVal === 0 ? true: false}
                 />
                 <label class="form-check-label" for="flexRadioDefault3">
-                HightText Markdown Language
+                {queList[counter].options[2]}
                 </label>
               </div>
               <div class="form-check">
@@ -105,7 +105,7 @@ function QuizLayout() {
                   disabled={timerNewVal === 0 ? true: false}
                 />
                 <label class="form-check-label" for="flexRadioDefault4">
-                None of the above
+                {queList[counter].options[3]}
                 </label>
               </div>
             </p>
