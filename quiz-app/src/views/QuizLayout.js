@@ -27,10 +27,12 @@ function QuizLayout() {
         console.log(counter)
         if(counter<queList.length-1){
             setCounter(counter+1);
+            updateTimer(60);
         }
         else {
             counter=counter;
         }
+        
     }
 
     
