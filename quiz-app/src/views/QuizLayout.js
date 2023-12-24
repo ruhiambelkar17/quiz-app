@@ -3,8 +3,9 @@ import Timer from "../components/Timer";
 import { useState } from "react";
 
 function QuizLayout() {
-    const [timerNewVal,setTimerNewVal]=useState("");
+    const [timerNewVal,setTimerNewVal]=useState(0);
     let [counter,setCounter]=useState(0);
+    let [isNextBtn,setNextBtn]=useState(false);
 
     const queList=[
         {que:"What is the correct syntax of doctype in HTML5?",
@@ -17,22 +18,27 @@ function QuizLayout() {
     options:["head tag","title tag","html tag","body tag"]}
     ];
 
+    const ansList=[]
+
 
     function updateTimer(timerVal){
         setTimerNewVal(timerVal);
-        
+        //console.log("reset timer")
     }
 
     function goToNextQue(){
-        console.log(counter)
+        
+        
+
         if(counter<queList.length-1){
             setCounter(counter+1);
-            updateTimer(60);
+            setTimerNewVal(60);
+            
         }
         else {
             counter=counter;
         }
-        
+        //setNextBtn(false);
     }
 
     
@@ -49,7 +55,7 @@ function QuizLayout() {
              
               <div className="d-inline-flex">
                 <p>Time:</p>
-                <Timer onUpdateTimer={updateTimer} />
+                <Timer onUpdateTimer={updateTimer} nextPg={timerNewVal} />
               </div>
             </div>
             <p className="card-text">
