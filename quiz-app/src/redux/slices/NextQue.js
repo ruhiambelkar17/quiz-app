@@ -2,10 +2,10 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const nextQueSlice=createSlice({
     name:"NextQue",
-    initialState:0,
+    initialState:[],
     reducers:{
         goToNextQue: (state,action)=> {
-            state=action.payload;
+            state.push(action.payload);
         }
     }
 })

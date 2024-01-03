@@ -15,11 +15,11 @@ function Timer(props){
         //let a=props.nextPg ;
         console.log("hittteedddd")
 
-       if (timerVal > 0)
+       if (timerVal.timer > 0)
        {
-        props.onUpdateTimer(timerVal);
-        timerVal > 0 && setTimeout(() => setTimer(timerVal - 1), 1000);
-        console.log("hitttt next",timerVal);
+        props.onUpdateTimer(timerVal.timer);
+        timerVal.timer > 0 && setTimeout(() => setTimer(timerVal.timer - 1), 1000);
+        console.log("hitttt next",timerVal.timer);
        }
             
        else{

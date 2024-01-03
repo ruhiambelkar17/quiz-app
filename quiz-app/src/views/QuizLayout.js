@@ -27,11 +27,12 @@ function QuizLayout() {
 
     
 
-    function goToNextQue(){
+    function goToNextQuestion(){
 
         if(counter<queList.length-1){
             setCounter(counter+1);
             //dispatch({type:"NextQue"})
+            dispatch(goToNextQue({timer:60}));
             //updateTimer(count);
             console.log("clicked on next",count)
         }
@@ -126,7 +127,7 @@ function QuizLayout() {
                 type="button"
                 style={{ backgroundColor: "#056D61", border: "#056D61" }}
                 className="btn btn-primary"
-                onClick={(e) => dispatch(goToNextQue(60))}
+                onClick={goToNextQuestion}
               >
                 Next
               </button>
