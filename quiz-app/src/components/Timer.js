@@ -1,45 +1,38 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function Timer(props){
-    const[timerValue,setTimer]=useState(60); 
-
+    let[timerValue,setTimer]=useState(60); 
+    let timerVal=useSelector((state)=> state);
     useEffect(() => {
         updateTimer();
       }, [timerValue]);
 
-    
 
     function updateTimer(){
-        let a=props.nextPg ;
+        //setTimer(timerVal);
+       // timerValue=timerVal;
+        //let a=props.nextPg ;
 
-        if (a){
-            setTimer(60);
-            }
-            console.log("******",a)
+       if (timerVal)
+       {
+        props.onUpdateTimer(timerVal);
+        timerVal > 0 && setTimeout(() => setTimer(timerVal - 1), 1000);
+        console.log("hitttt next",timerVal);
+       }
             
+       else{
+        props.onUpdateTimer(timerValue);
+        timerValue > 0 && setTimeout(() => setTimer(timerValue - 1), 1000);
+        console.log("before next",timerValue);
+       }
         
-                timerValue > 0 && setTimeout(() => setTimer(timerValue - 1), 1000);
-                props.onUpdateTimer(timerValue);
-            
-            //props.onUpdateTimer(timerValue);
-        //timerValue > 0 && setTimeout(() => setTimer(timerValue - 1), 1000);
-        // if (props.nextPg){
-        //     props.onUpdateTimer();   
-        // }
-        // else {
-        //     props.onUpdateTimer(timerValue);   
-        // }
         
     }
 
-    // if (props.nextPg){
-    //     console.log("prop next")
-    //     updateTimer();
-    // }
-
     return(
         <div>
-            <span>{timerValue} or {props.nextPg} </span>
+            <span>{timerVal ? timerVal:timerValue} </span>
         </div>
     )
 }

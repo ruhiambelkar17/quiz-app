@@ -1,12 +1,15 @@
 import Navbar from "../components/Navbar";
 import Timer from "../components/Timer";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 function QuizLayout() {
     const [timerNewVal,setTimerNewVal]=useState(0);
     let [counter,setCounter]=useState(0);
     let [isNextBtn,setNextBtn]=useState(false);
-
+    const dispatch=useDispatch();
+    const count=useSelector((state)=> state);
     const queList=[
         {que:"What is the correct syntax of doctype in HTML5?",
     options:["</doctype html>","<doctype html>","<doctype html!>","<!doctype html>"]},
@@ -28,11 +31,11 @@ function QuizLayout() {
 
     function goToNextQue(){
         
-        
+      updateTimer(count);
 
         if(counter<queList.length-1){
             setCounter(counter+1);
-            setTimerNewVal(60);
+            dispatch({type:"NextQue"})
             
         }
         else {
