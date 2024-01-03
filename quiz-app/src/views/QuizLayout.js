@@ -3,11 +3,12 @@ import Timer from "../components/Timer";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import {goToNextQue} from "../redux/slices/NextQue";
 
 function QuizLayout() {
     const [timerNewVal,setTimerNewVal]=useState(0);
     let [counter,setCounter]=useState(0);
-    let [isNextBtn,setNextBtn]=useState(false);
+    //let [isNextBtn,setNextBtn]=useState(false);
     const dispatch=useDispatch();
     const count=useSelector((state)=> state);
     const queList=[
@@ -30,7 +31,7 @@ function QuizLayout() {
 
         if(counter<queList.length-1){
             setCounter(counter+1);
-            dispatch({type:"NextQue"})
+            //dispatch({type:"NextQue"})
             //updateTimer(count);
             console.log("clicked on next",count)
         }
@@ -125,7 +126,7 @@ function QuizLayout() {
                 type="button"
                 style={{ backgroundColor: "#056D61", border: "#056D61" }}
                 className="btn btn-primary"
-                onClick={goToNextQue}
+                onClick={(e) => dispatch(goToNextQue(60))}
               >
                 Next
               </button>

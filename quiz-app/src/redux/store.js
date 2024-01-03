@@ -1,17 +1,27 @@
-import {createStore} from "redux";
+// store using redux
+//import {createStore} from "redux";
+// const reducer=(state,action) => {
+//     if (action.type === "NextQue") {
+//         return state=60;
+//     }
+//     else
+//     {
+//         return state=0;
+//     }
+// }
+// export const store= createStore(reducer); // created store
 
-const reducer=(state,action) => {
-    // if (action.type === "Increment"){
-    //     return state + 1;
-    // }
+//#############################################################
 
-    if (action.type === "NextQue") {
-        return state=60;
-    }
-    else
+// store using redux toolkit
+
+import { configureStore } from '@reduxjs/toolkit';
+import nextQueReducer from './slices/NextQue';
+
+export const store=configureStore(
     {
-        return state=0;
+        reducer:{
+            nextQue:nextQueReducer
+        }
     }
-}
-
-export const store= createStore(reducer); // created store
+);
