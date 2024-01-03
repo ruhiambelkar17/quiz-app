@@ -24,19 +24,15 @@ function QuizLayout() {
     const ansList=[]
 
 
-    function updateTimer(timerVal){
-        setTimerNewVal(timerVal);
-        //console.log("reset timer")
-    }
+    
 
     function goToNextQue(){
-        
-      updateTimer(count);
 
         if(counter<queList.length-1){
             setCounter(counter+1);
             dispatch({type:"NextQue"})
-            
+            //updateTimer(count);
+            console.log("clicked on next",count)
         }
         else {
             counter=counter;
@@ -44,6 +40,10 @@ function QuizLayout() {
         //setNextBtn(false);
     }
 
+    function updateTimer(timerVal){
+      setTimerNewVal(timerVal);
+      console.log("reset timer",timerVal)
+  }
     
   return (
     <div>

@@ -13,8 +13,9 @@ function Timer(props){
         //setTimer(timerVal);
        // timerValue=timerVal;
         //let a=props.nextPg ;
+        console.log("hittteedddd")
 
-       if (timerVal)
+       if (timerVal > 0)
        {
         props.onUpdateTimer(timerVal);
         timerVal > 0 && setTimeout(() => setTimer(timerVal - 1), 1000);

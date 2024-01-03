@@ -6,7 +6,11 @@ const reducer=(state=0,action) => {
     // }
 
     if (action.type === "NextQue") {
-        return state= 60;
+        return state=60;
+    }
+    else
+    {
+        return state;
     }
 }
 
