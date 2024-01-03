@@ -1,6 +1,6 @@
 import {createStore} from "redux";
 
-const reducer=(state=0,action) => {
+const reducer=(state,action) => {
     // if (action.type === "Increment"){
     //     return state + 1;
     // }
@@ -10,7 +10,7 @@ const reducer=(state=0,action) => {
     }
     else
     {
-        return state;
+        return state=0;
     }
 }
 

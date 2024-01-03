@@ -33,7 +33,7 @@ function Timer(props){
 
     return(
         <div>
-            <span>{timerVal ? timerVal:timerValue} </span>
+            <span>{timerVal > 0 ? timerVal:timerValue} </span>
         </div>
     )
 }
