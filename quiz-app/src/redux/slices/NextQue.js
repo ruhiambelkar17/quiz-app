@@ -5,6 +5,7 @@ const nextQueSlice=createSlice({
     initialState:[],
     reducers:{
         goToNextQue: (state,action)=> {
+            console.log('payload', action)
             state.push(action.payload);
         }
     }
