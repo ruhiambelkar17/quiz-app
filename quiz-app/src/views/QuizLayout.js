@@ -1,12 +1,13 @@
 import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function QuizLayout() {
   const [timerVal, setTimerVal] = useState(5);
   const [timerAction, setTimerAction] = useState("start");
   let [counter, setCounter] = useState(0);
   //let [isNextBtn,setNextBtn]=useState(false);
-
+  const navigate = useNavigate();
   const queList = [
     {
       que: "What is the correct syntax of doctype in HTML5?",
@@ -40,12 +41,15 @@ function QuizLayout() {
   }, []);
 
   function goToNextQuestion() {
+    resetAns();
     resetJSIntervals();
     setTimerVal((prevVal) => 5);
     updateTimer();
 
     if (counter < queList.length - 1) {
       setCounter(counter + 1);
+    } else if (counter == queList.length - 1) {
+      navigate("/result");
     }
   }
 
@@ -53,6 +57,14 @@ function QuizLayout() {
     // todo-improve
     for (i = 0; i < 100; i++) {
       window.clearInterval(i);
+    }
+  }
+
+  function resetAns() {
+    const chks = document.querySelectorAll(".form-check input");
+    for (let i = 0; i < chks.length; i++) {
+      const chk = chks[i];
+      chk.checked = false;
     }
   }
 
@@ -89,7 +101,7 @@ function QuizLayout() {
               </div>
             </div>
             {/* <QuestionCard ques={queList[counter]} counter timerVal /> */}
-            {timerVal}
+
             <p className="card-text">
               <div className="d-flex justify-content-between">
                 <p>
