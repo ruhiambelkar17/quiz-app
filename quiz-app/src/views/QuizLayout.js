@@ -1,18 +1,12 @@
 import Navbar from "../components/Navbar";
-import Timer from "../components/Timer";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-//import { goToNextQue } from "../redux/slices/NextQue";
-//import QuestionCard from "./QuestionCard";
+import { useEffect, useState } from "react";
 
 function QuizLayout() {
-  const [timerNewVal, setTimerNewVal] = useState(0);
-  const [timerAction, setTimerAction] = useState('start');
+  const [timerVal, setTimerVal] = useState(5);
+  const [timerAction, setTimerAction] = useState("start");
   let [counter, setCounter] = useState(0);
   //let [isNextBtn,setNextBtn]=useState(false);
-  const dispatch = useDispatch();
-  const count = useSelector((state) => state);
+
   const queList = [
     {
       que: "What is the correct syntax of doctype in HTML5?",
@@ -37,28 +31,44 @@ function QuizLayout() {
     },
   ];
 
-  const ansList = [];
+  let i = 0;
+  useEffect(() => {
+    if (i == 0) {
+      i++;
+      updateTimer();
+    }
+  }, []);
 
   function goToNextQuestion() {
+    resetJSIntervals();
+    setTimerVal((prevVal) => 5);
+    updateTimer();
+
     if (counter < queList.length - 1) {
       setCounter(counter + 1);
-      console.log("clicked on next", count);
-    } else {
-      counter = counter;
     }
-    resetTimer(60);
   }
 
-  function updateTimer(timerVal) {
-    setTimerNewVal(timerVal);
-    console.log("reset timer", timerVal);
+  function resetJSIntervals() {
+    // todo-improve
+    for (i = 0; i < 100; i++) {
+      window.clearInterval(i);
+    }
   }
 
-   function resetTimer(t) {
-     setTimerNewVal(t);
-  //   //setTimerAction('reset');
-  //   //setTimerAction('start');
-   }
+  function updateTimer() {
+    if (timerVal >= 0 || !timerVal) {
+      const timer = setInterval(() => {
+        setTimerVal((prevVal) => {
+          if (prevVal === 0) {
+            resetJSIntervals();
+          } else {
+            return prevVal - 1;
+          }
+        });
+      }, 1000);
+    }
+  }
 
   return (
     <div>
@@ -71,14 +81,15 @@ function QuizLayout() {
           <div className="card-body">
             <div className="d-flex justify-content-between">
               <div className="d-inline-flex">
-                <p>Time:</p>
-                 <Timer
+                <p>Time:{timerVal || 0}</p>
+                {/* <Timer
                   onUpdateTimer={updateTimer}
                   onResetTimer={resetTimer}
-                /> 
+                />  */}
               </div>
             </div>
-            {/* <QuestionCard ques={queList[counter]} counter timerNewVal /> */}
+            {/* <QuestionCard ques={queList[counter]} counter timerVal /> */}
+            {timerVal}
             <p className="card-text">
               <div className="d-flex justify-content-between">
                 <p>
@@ -97,7 +108,7 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault1"
-                  disabled={timerNewVal === 0 ? true : false}
+                  disabled={timerVal === 0 || !timerVal ? true : false}
                 />
                 <label class="form-check-label" for="flexRadioDefault1">
                   {queList[counter].options[0]}
@@ -109,7 +120,7 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault2"
-                  disabled={timerNewVal === 0 ? true : false}
+                  disabled={timerVal === 0 || !timerVal ? true : false}
                 />
                 <label class="form-check-label" for="flexRadioDefault2">
                   {queList[counter].options[1]}
@@ -121,7 +132,7 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault3"
-                  disabled={timerNewVal === 0 ? true : false}
+                  disabled={timerVal === 0 || !timerVal ? true : false}
                 />
                 <label class="form-check-label" for="flexRadioDefault3">
                   {queList[counter].options[2]}
@@ -133,7 +144,7 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault4"
-                  disabled={timerNewVal === 0 ? true : false}
+                  disabled={timerVal === 0 || !timerVal ? true : false}
                 />
                 <label class="form-check-label" for="flexRadioDefault4">
                   {queList[counter].options[3]}

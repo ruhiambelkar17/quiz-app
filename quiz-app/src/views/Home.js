@@ -2,8 +2,6 @@ import Navbar from "../components/Navbar";
 import Img1 from "../assets/images/study.png";
 import { Link } from "react-router-dom";
 //import FrontEnd from "./FrontEnd";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 function DomainCard(props){
     return (
         <div>
@@ -91,13 +89,12 @@ function Home() {
       },
   ];
 
-  const dispatch=useDispatch();
-  const count=useSelector((state)=> state);
+  const count=1;
   return (
     <div style={{ backgroundColor: "#F4FFFE", height: "918px" }}>
       <Navbar />
       <h1>counter:{count}</h1>
-      <button onClick={(e)=>dispatch({type:"Increment"})}>increment</button>
+      <button >increment</button>
       <div className="d-flex justify-content-center mt-3 mb-3">
         <img src={Img1} width="300" height="350" alt="img" />
       </div>
