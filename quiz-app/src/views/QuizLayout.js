@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 function QuizLayout() {
   const [timerVal, setTimerVal] = useState(5);
   let [counter, setCounter] = useState(0);
+  let [counter1, setCounter1] = useState([]);
   const navigate = useNavigate();
   const [ansList, setAnsList] = useState([]);
   let [finalResult, setFinalResult] = useState(0);
@@ -38,16 +39,19 @@ function QuizLayout() {
 
   let i = 0;
   useEffect(() => {
+    console.log("*****",counter1)
     if (i === 0) {
       i++;
       updateTimer();
+      
     }
   }, []);
 
   function selectAns(event) {
     let a = event.target.value;
     setAnsList([...ansList, a]);
-    calculateResult();
+    //setCounter1(counter1+1);
+    
   }
 
   function goToNextQuestion() {
@@ -62,8 +66,17 @@ function QuizLayout() {
     if (counter < queList.length - 1) {
       setCounter(counter + 1);
       
+      
     } else if (counter === queList.length - 1) {
       
+      for (let i in ansList) {
+        if (queList[i].answer === ansList[i]) {
+          setFinalResult(finalResult+=1);
+          //console.log("####result", finalResult);
+        } else {
+          setFinalResult(finalResult += 0);
+        }
+      }
       navigate("/result");
     }
     console.log("####result",finalResult);
@@ -71,16 +84,7 @@ function QuizLayout() {
     
   }
 
-  function calculateResult(){
-    for (let i in ansList) {
-      if (queList[i].answer === ansList[i]) {
-        setFinalResult(finalResult + 1);
-        console.log("####result", finalResult);
-      } else {
-        setFinalResult(finalResult + 0);
-      }
-    }
-  }
+
 
   function resetJSIntervals() {
     // todo-improve
