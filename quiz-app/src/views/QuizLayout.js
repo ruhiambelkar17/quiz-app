@@ -4,11 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 function QuizLayout() {
   const [timerVal, setTimerVal] = useState(5);
-  //const [timerAction, setTimerAction] = useState("start");
   let [counter, setCounter] = useState(0);
-  //let [answer,setAnswer]=useState("");
   const navigate = useNavigate();
-  const [ansList,setAnsList]=useState([]);
+  const [ansList, setAnsList] = useState([]);
+  let [finalResult, setFinalResult] = useState(0);
   const queList = [
     {
       que: "What is the correct syntax of doctype in HTML5?",
@@ -18,18 +17,22 @@ function QuizLayout() {
         "<doctype html!>",
         "<!doctype html>",
       ],
+      answer: "<!doctype html>",
     },
     {
       que: "Which of the following is used to read an HTML page and render it?",
       options: ["Web server", "Web network", "Web browser", "Web matrix"],
+      answer: "Web browser",
     },
     {
       que: "Which of the following tag is used for inserting the largest heading in HTML?",
       options: ["<h1>", "<head>", "<h6>>", "<heading>"],
+      answer: "<h1>",
     },
     {
-      que: "n which part of the HTML metadata is contained?",
+      que: "In which part of the HTML metadata is contained?",
       options: ["head tag", "title tag", "html tag", "body tag"],
+      answer: "head tag",
     },
   ];
 
@@ -39,14 +42,12 @@ function QuizLayout() {
       i++;
       updateTimer();
     }
-  }, [ ]);
-  
-  function selectAns(event){
-    let a=event.target.value;
-    //console.log("input",event.target.value)
-    setAnsList( [...ansList, a]);
-    
-    
+  }, []);
+
+  function selectAns(event) {
+    let a = event.target.value;
+    setAnsList([...ansList, a]);
+    calculateResult();
   }
 
   function goToNextQuestion() {
@@ -56,11 +57,28 @@ function QuizLayout() {
     updateTimer();
 
     
-    console.log("Ans list",ansList)
+
+    console.log("Ans list", ansList);
     if (counter < queList.length - 1) {
       setCounter(counter + 1);
+      
     } else if (counter === queList.length - 1) {
+      
       navigate("/result");
+    }
+    console.log("####result",finalResult);
+
+    
+  }
+
+  function calculateResult(){
+    for (let i in ansList) {
+      if (queList[i].answer === ansList[i]) {
+        setFinalResult(finalResult + 1);
+        console.log("####result", finalResult);
+      } else {
+        setFinalResult(finalResult + 0);
+      }
     }
   }
 
@@ -112,7 +130,6 @@ function QuizLayout() {
                 />  */}
               </div>
             </div>
-            {/* <QuestionCard ques={queList[counter]} counter timerVal /> */}
 
             <p className="card-text">
               <div className="d-flex justify-content-between">
@@ -120,12 +137,7 @@ function QuizLayout() {
                   Q.{counter + 1} {queList[counter].que}
                 </p>
               </div>
-              {/* <ul className="lh-5">
-                <li className="mb-2">HyperText Markup Language</li>
-                <li className="mb-2">HightText Markup Language</li>
-                <li className="mb-2">HightText Markdown Language</li>
-                <li className="mb-2">None of the above</li>
-              </ul> */}
+
               <div class="form-check">
                 <input
                   class="form-check-input"
