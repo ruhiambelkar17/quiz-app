@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+
 
 function Timer(props) {
   let [timerValue, setTimerValue] = useState(60);
@@ -17,7 +17,7 @@ function Timer(props) {
    
     props.onUpdateTimer(timerValue);
     if (timerValue >= 0 || !timerValue) {
-        const timer = setInterval(() => {
+        setInterval(() => {
           setTimerValue((prevVal) => {
             if (prevVal === 0) {
                 resetTimer();
