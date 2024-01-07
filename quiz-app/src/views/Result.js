@@ -1,7 +1,10 @@
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+import { useLocation} from "react-router-dom"
 
 function Result() {
+  const { state } = useLocation();
+  console.log("*****result****",state);
   return (
     <div>
         <Navbar />
@@ -10,7 +13,7 @@ function Result() {
         <div className="card shadow">
         <div className="card-body" style={{color:"#056D61"}}>
           <h5 className="card-title" >Thanks for taking an Assessment!!</h5>
-          <p className="card-text">Your Score: 18/20</p>
+          <p className="card-text">Your Score: {state}/4</p>
           <p>Level:Beginer</p>
           <p >You have passed the Assessment!!</p>
           <Link

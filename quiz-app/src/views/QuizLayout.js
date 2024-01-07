@@ -72,12 +72,11 @@ function QuizLayout() {
       for (let i in ansList) {
         if (queList[i].answer === ansList[i]) {
           setFinalResult(finalResult+=1);
-          //console.log("####result", finalResult);
         } else {
           setFinalResult(finalResult += 0);
         }
       }
-      navigate("/result");
+      navigate("/result",{state:finalResult});
     }
     console.log("####result",finalResult);
 
