@@ -37,7 +37,8 @@ function Navbar() {
           </li>
           <li className="nav-item p-3">
             <a className="nav-link" href="#link">
-              Contact
+            <Link to={'/contact-us'}>
+            Contact Us</Link>
             </a>
           </li>
         </ul>
