@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useFetch from "../helpers/useFetch.js"
 
 function QuizLayout() {
   const [timerVal, setTimerVal] = useState(5);
@@ -114,9 +115,25 @@ function QuizLayout() {
     }
   }
 
+
+  const [id, setId] = useState(1)
+    const { loading, error, value } = useFetch(
+        `http://localhost:1337/api/html-questions/`,
+        {},
+        [id]
+    )
   return (
     <div>
       <Navbar />
+      <div>
+            <div>{id}</div>
+            <button onClick={() => setId(currentId => currentId + 1)}>
+                Increment ID
+            </button>
+            <div>Loading: {loading}</div>
+            <div>{JSON.stringify(error, null, 2)}</div>
+            <div>{JSON.stringify(value, null, 2)}</div>
+        </div>
       <div
         style={{ backgroundColor: "#F4FFFE" }}
         className="d-flex justify-content-center "
