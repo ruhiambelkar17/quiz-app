@@ -105,7 +105,7 @@ function Home() {
         <div className="col-md-3 d-flex justify-content-center">
          {/* { quizDomains.map(DomainCard)} */}
          {quizDomains.map(item=>{
-            return <DomainCard name={item.name} pathName={item.pathName} />
+            return <DomainCard name={item.name} pathName={item.pathName} key={item.name} />
           })}
         </div>
       </div>
