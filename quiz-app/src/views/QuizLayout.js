@@ -88,23 +88,23 @@ function QuizLayout() {
 
     
 
-    // console.log("Ans list", ansList);
-    // if (counter <queList.length - 1) {
-    //   setCounter(counter + 1);
+    console.log("Ans list", ansList);
+    if (counter <queList.length - 1) {
+      setCounter(counter + 1);
       
       
-    // } else if (counter === queList.length - 1) {
+    } else if (counter === queList.length - 1) {
       
-    //   for (let i in ansList) {
-    //     if (queList[i].answer === ansList[i]) {
-    //       setFinalResult(finalResult+=1);
-    //     } else {
-    //       setFinalResult(finalResult += 0);
-    //     }
-    //   }
-    //   navigate("/result",{state:finalResult});
-    // }
-    // console.log("####result",finalResult);
+      for (let i in ansList) {
+        if (queList[i].answer === ansList[i]) {
+          setFinalResult(finalResult+=1);
+        } else {
+          setFinalResult(finalResult += 0);
+        }
+      }
+      navigate("/result",{state:finalResult});
+    }
+    console.log("####result",finalResult);
 
     
   }
@@ -154,39 +154,38 @@ function QuizLayout() {
       >
         <div className="card w-75 my-5">
           <div className="card-body">
-            {/* <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between">
               <div className="d-inline-flex">
-                {/* <p>Time:{timerVal || 0}</p> */}
-                {/* <p>ans: {ansList}</p> */}
-                {/* <Timer
+                <p>Time:{timerVal || 0}</p> 
+               <p>ans: {ansList}</p> 
+              {/* <Timer
                   onUpdateTimer={updateTimer}
                   onResetTimer={resetTimer}
                 />  
-               
+                */}
               </div>
-            </div> */}
-            api data: {queList.map((que)=>(
-                  <p>{que.attributes.question}</p>
-                ))}
-            {/* <p className="card-text">
+            </div> 
+           
+             <p className="card-text">
               <div className="d-flex justify-content-between">
-                <p>
+                {/* <p>
                   Q.{counter + 1} {queList[counter].attributes.question}
-                </p>
-              </div>
-
-              <div class="form-check">
+                </p> */}
+                 {queList.map((que)=> ( 
+                  <div>
+                  <p>{que.attributes.question}</p>
+                  <div class="form-check">
                 <input
                   class="form-check-input"
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault1"
-                  value={queList[counter].attributes.options[0]}
+                  value={que.attributes.options.a}
                   onChange={selectAns}
                   disabled={timerVal === 0 || !timerVal ? true : false}
                 />
                 <label class="form-check-label" for="flexRadioDefault1">
-                  {queList[counter].attributes.options[0]}
+                  {que.attributes.options.a}
                 </label>
               </div>
               <div class="form-check">
@@ -195,12 +194,12 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault2"
-                  value={queList[counter].attributes.options[1]}
+                  value={que.attributes.options.b}
                   onChange={selectAns}
                   disabled={timerVal === 0 || !timerVal ? true : false}
                 />
                 <label class="form-check-label" for="flexRadioDefault2">
-                  {queList[counter].attributes.options[1]}
+                  {que.attributes.options.b}
                 </label>
               </div>
               <div class="form-check">
@@ -209,12 +208,12 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault3"
-                  value={queList[counter].attributes.options[2]}
+                  value={que.attributes.options.c}
                   onChange={selectAns}
                   disabled={timerVal === 0 || !timerVal ? true : false}
                 />
                 <label class="form-check-label" for="flexRadioDefault3">
-                  {queList[counter].attributes.options[2]}
+                  {que.attributes.options.c}
                 </label>
               </div>
               <div class="form-check">
@@ -223,15 +222,20 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault4"
-                  value={queList[counter].attributes.options[3]}
+                  value={que.attributes.options.d}
                   onChange={selectAns}
                   disabled={timerVal === 0 || !timerVal ? true : false}
                 />
                 <label class="form-check-label" for="flexRadioDefault4">
-                  {queList[counter].attributes.options[3]}
+                  {que.attributes.options.d}
                 </label>
               </div>
-            </p> */}
+                  </div>
+                ))}
+              </div>
+
+              
+            </p> 
             <div className="card-footer text-body-secondary d-flex justify-content-end">
               <button
                 type="button"
