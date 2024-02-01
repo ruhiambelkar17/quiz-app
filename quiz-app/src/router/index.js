@@ -8,11 +8,18 @@ import FrontEnd from "../views/FrontEnd";
 import Home from "../views/Home"
 import QuizLayout from "../views/QuizLayout";
 import ContactUs from "../views/ContactUs";
+import App from "../App";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <App />,
+    children: [
+      {
+        path: '/',
+        element: <div>home</div>
+      }
+    ]
   },
 
   {
