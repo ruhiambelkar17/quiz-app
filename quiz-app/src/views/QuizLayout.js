@@ -39,7 +39,7 @@ function QuizLayout() {
 )
     .then((data) => {
         //console.log("***@@@@@",data.data);
-         setQueList(data.data);
+         setQueList(data.data[counter]);
          //console.log("***@@@@@",queList.attributes.question );
          setNewQueList(data.data[counter]);
     });
@@ -56,11 +56,8 @@ function QuizLayout() {
     
 
     console.log("Ans list", ansList);
-    if (counter <queList.length - 1) {
-      setCounter(counter + 1);
-      setNewQueList(queList[counter]);
-      
-    } else if (counter === queList.length - 1) {
+    setCounter(counter+1)
+     
       
       for (let i in ansList) {
         console.log(queList[i].attributes.answer);
@@ -72,7 +69,7 @@ function QuizLayout() {
         }
       }
       navigate("/result",{state:finalResult});
-    }
+  
     console.log("####result",finalResult);
 
     
@@ -140,12 +137,13 @@ function QuizLayout() {
               <div className="d-flex justify-content-between">
                  
                 </div>
-                  {newQueList && Object.keys(newQueList).map((que,i)=> ( 
+                  {queList && 
+                  Object.keys(queList).map((que,i)=> ( 
                     
                   <div >
               
-                  <p> Q.{counter + 1} {newQueList[que].question}</p>
-                  <div class="form-check">
+                  <p> Q.{counter + 1} {queList[que].question}</p>
+                  {/* <div class="form-check">
                 <input
                   class="form-check-input"
                   type="radio"
@@ -200,7 +198,7 @@ function QuizLayout() {
                 <label class="form-check-label" for="flexRadioDefault4">
                   {newQueList[que].options?.d}
                 </label>
-              </div> 
+              </div>  */}
                   </div>
                 ))}   
                 </p> 
