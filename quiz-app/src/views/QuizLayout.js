@@ -11,6 +11,7 @@ function QuizLayout() {
   const [ansList, setAnsList] = useState([]);
   let [finalResult, setFinalResult] = useState(0);
   const [queList,setQueList]=useState([]);
+  const [newQueList,setNewQueList]=useState([]);
   // const queList = [
   //   {
   //     que: "What is the correct syntax of doctype in HTML5?",
@@ -73,17 +74,19 @@ function QuizLayout() {
        res.json()
 )
     .then((data) => {
-        console.log("***@@@@@",data.data);
+        //console.log("***@@@@@",data.data);
          setQueList(data.data);
-      
+         //console.log("***@@@@@",queList.attributes.question );
+         setNewQueList(data.data[counter]);
     });
-
+    
+    //console.log("***@@@@@",queList);
   }
 
   function goToNextQuestion() {
     resetAns();
     resetJSIntervals();
-    setTimerVal((prevVal) => 5);
+    setTimerVal((prevVal) => 10);
     updateTimer();
 
     
@@ -163,18 +166,82 @@ function QuizLayout() {
                   onResetTimer={resetTimer}
                 />  
                 */}
+                {JSON.stringify(newQueList)}
               </div>
             </div> 
-           
+          
              <p className="card-text">
               <div className="d-flex justify-content-between">
-                {/* <p>
-                  Q.{counter + 1} {queList[counter].attributes.question}
-                </p> */}
-                 {queList.map((que)=> ( 
-                  <div>
-                  <p>{que.attributes.question}</p>
-                  <div class="form-check">
+                 <p>
+                  {/* Q.{counter + 1} 
+                  {queList.attributes.question } */}
+                </p> 
+                </div>
+                  {newQueList && Object.keys(newQueList).map((que,i)=> ( 
+                    
+                  <div key={i}>
+              
+                  <p>{newQueList[que].options}</p>
+                  {/* <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault1"
+                  value={newQueList[que].options.a}
+                  onChange={selectAns}
+                  disabled={timerVal === 0 || !timerVal ? true : false}
+                />
+                <label class="form-check-label" for="flexRadioDefault1">
+                  {newQueList[que].options.a}
+                </label>
+              </div> */}
+              {/* <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault2"
+                  value={que.attributes.options.b}
+                  onChange={selectAns}
+                  disabled={timerVal === 0 || !timerVal ? true : false}
+                />
+                <label class="form-check-label" for="flexRadioDefault2">
+                  {que.attributes.options.b}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault3"
+                  value={que.attributes.options.c}
+                  onChange={selectAns}
+                  disabled={timerVal === 0 || !timerVal ? true : false}
+                />
+                <label class="form-check-label" for="flexRadioDefault3">
+                  {que.attributes.options.c}
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault4"
+                  value={que.attributes.options.d}
+                  onChange={selectAns}
+                  disabled={timerVal === 0 || !timerVal ? true : false}
+                />
+                <label class="form-check-label" for="flexRadioDefault4">
+                  {que.attributes.options.d}
+                </label>
+              </div> */}
+                  </div>
+                ))}   
+                </p> 
+                {/* <div class="form-check">
                 <input
                   class="form-check-input"
                   type="radio"
@@ -229,13 +296,13 @@ function QuizLayout() {
                 <label class="form-check-label" for="flexRadioDefault4">
                   {que.attributes.options.d}
                 </label>
-              </div>
+              </div> */}
                   </div>
-                ))}
+              </div>
               </div>
 
               
-            </p> 
+            
             <div className="card-footer text-body-secondary d-flex justify-content-end">
               <button
                 type="button"
@@ -247,9 +314,9 @@ function QuizLayout() {
               </button>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+       
+   
+   
   );
 }
 
