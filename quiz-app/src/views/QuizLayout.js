@@ -8,7 +8,7 @@ function QuizLayout() {
   let [counter, setCounter] = useState(0);
   let [counter1, setCounter1] = useState([]);
   const navigate = useNavigate();
-  const [ansList, setAnsList] = useState([]);
+  const [ansList, setAnsList] = useState();
   let [finalResult, setFinalResult] = useState(0);
   const [queList,setQueList]=useState([]);
   const [newQueList,setNewQueList]=useState([]);
@@ -28,7 +28,7 @@ function QuizLayout() {
 
   function selectAns(event) {
     let a = event.target.value;
-    setAnsList([...ansList, a]);
+    setAnsList(a);
     //setCounter1(counter1+1);
     
   }
@@ -56,20 +56,27 @@ function QuizLayout() {
     
 
     console.log("Ans list", ansList);
-    setCounter(counter+1)
-     
+    //setCounter(counter + 1);
+    if (counter < 1) {
+      setCounter(counter + 1);
+      setNewQueList(queList[counter]);
       
-      for (let i in ansList) {
-        console.log(queList[i].attributes.answer);
-        if (queList[i].attributes.answer === ansList[i]) {
-          
-          setFinalResult(finalResult+=1);
+     } 
+     else {
+      navigate("/result",{state:finalResult});
+    
+     }
+      console.log("@@",queList);
+     
+       // console.log(queList[i].attributes);
+        if (queList.attributes.answer === ansList) {
+          console.log("trueeee")
+          setFinalResult(prevVal => prevVal+=1);
         } else {
           setFinalResult(finalResult += 0);
         }
-      }
-      navigate("/result",{state:finalResult});
-  
+      
+    
     console.log("####result",finalResult);
 
     
@@ -143,18 +150,18 @@ function QuizLayout() {
                   <div >
               
                   <p> Q.{counter + 1} {queList[que].question}</p>
-                  {/* <div class="form-check">
+                   <div class="form-check">
                 <input
                   class="form-check-input"
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault1"
-                  value={newQueList[que].options?.a}
+                  value={queList[que].options?.a}
                   onChange={selectAns}
                   disabled={timerVal === 0 || !timerVal ? true : false}
                 />
                 <label class="form-check-label" for="flexRadioDefault1">
-                  {newQueList[que].options?.a}
+                  {queList[que].options?.a}
                 </label>
               </div> 
               <div class="form-check">
@@ -163,12 +170,12 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault2"
-                  value={newQueList[que].options?.b}
+                  value={queList[que].options?.b}
                   onChange={selectAns}
                   disabled={timerVal === 0 || !timerVal ? true : false}
                 />
                 <label class="form-check-label" for="flexRadioDefault2">
-                  {newQueList[que].options?.b}
+                  {queList[que].options?.b}
                 </label>
               </div>
               <div class="form-check">
@@ -177,12 +184,12 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault3"
-                  value={newQueList[que].options?.c}
+                  value={queList[que].options?.c}
                   onChange={selectAns}
                   disabled={timerVal === 0 || !timerVal ? true : false}
                 />
                 <label class="form-check-label" for="flexRadioDefault3">
-                  {newQueList[que].options?.c}
+                  {queList[que].options?.c}
                 </label>
               </div>
               <div class="form-check">
@@ -191,14 +198,14 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault4"
-                  value={newQueList[que].options?.d}
+                  value={queList[que].options?.d}
                   onChange={selectAns}
                   disabled={timerVal === 0 || !timerVal ? true : false}
                 />
                 <label class="form-check-label" for="flexRadioDefault4">
-                  {newQueList[que].options?.d}
+                  {queList[que].options?.d}
                 </label>
-              </div>  */}
+              </div>  
                   </div>
                 ))}   
                 </p> 
