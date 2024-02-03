@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 
 function QuizLayout() {
-  const [timerVal, setTimerVal] = useState(5);
+  const [timerVal, setTimerVal] = useState(10);
   let [counter, setCounter] = useState(0);
   let [counter1, setCounter1] = useState([]);
   const navigate = useNavigate();
@@ -12,44 +12,7 @@ function QuizLayout() {
   let [finalResult, setFinalResult] = useState(0);
   const [queList,setQueList]=useState([]);
   const [newQueList,setNewQueList]=useState([]);
-  // const queList = [
-  //   {
-  //     que: "What is the correct syntax of doctype in HTML5?",
-  //     options: [
-  //       "</doctype html>",
-  //       "<doctype html>",
-  //       "<doctype html!>",
-  //       "<!doctype html>",
-  //     ],
-  //     answer: "<!doctype html>",
-  //   },
-  //   {
-  //     que: "Which of the following is used to read an HTML page and render it?",
-  //     options: ["Web server", "Web network", "Web browser", "Web matrix"],
-  //     answer: "Web browser",
-  //   },
-  //   {
-  //     que: "Which of the following tag is used for inserting the largest heading in HTML?",
-  //     options: ["<h1>", "<head>", "<h6>>", "<heading>"],
-  //     answer: "<h1>",
-  //   },
-  //   {
-  //     que: "In which part of the HTML metadata is contained?",
-  //     options: ["head tag", "title tag", "html tag", "body tag"],
-  //     answer: "head tag",
-  //   },
-  // ];
-
-  // useEffect(async ()=>{
-
-  //   const data = await fetch('http://localhost:1337/api/html-questions/');
-  //   setQueList(prev=>data.data)
-  // }, []);
-
-// useEffect(()=>{
-//   getQuestions();
-
-// },[])
+ 
 
   let i = 0;
   useEffect(() => {
@@ -58,6 +21,7 @@ function QuizLayout() {
       i++;
       getQuestions();
       updateTimer();
+      
     }
     
   }, [counter]);
@@ -94,12 +58,14 @@ function QuizLayout() {
     console.log("Ans list", ansList);
     if (counter <queList.length - 1) {
       setCounter(counter + 1);
-      
+      setNewQueList(queList[counter]);
       
     } else if (counter === queList.length - 1) {
       
       for (let i in ansList) {
-        if (queList[i].answer === ansList[i]) {
+        console.log(queList[i].attributes.answer);
+        if (queList[i].attributes.answer === ansList[i]) {
+          
           setFinalResult(finalResult+=1);
         } else {
           setFinalResult(finalResult += 0);
@@ -166,20 +132,17 @@ function QuizLayout() {
                   onResetTimer={resetTimer}
                 />  
                 */}
-                {JSON.stringify(newQueList)}
+                {/* {JSON.stringify(newQueList)} */}
               </div>
             </div> 
           
              <p className="card-text">
               <div className="d-flex justify-content-between">
-                 <p>
-                  {/* Q.{counter + 1} 
-                  {queList.attributes.question } */}
-                </p> 
+                 
                 </div>
                   {newQueList && Object.keys(newQueList).map((que,i)=> ( 
                     
-                  <div key={i}>
+                  <div >
               
                   <p> Q.{counter + 1} {newQueList[que].question}</p>
                   <div class="form-check">
