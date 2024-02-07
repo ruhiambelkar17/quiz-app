@@ -57,7 +57,13 @@ function QuizLayout() {
 
     console.log("Ans list", ansList);
     //setCounter(counter + 1);
-    if (counter < 1) {
+    if (queList.attributes.answer === ansList) {
+      console.log("trueeee")
+      setFinalResult(finalResult+=1);
+    } else {
+      setFinalResult(finalResult += 0);
+    }
+    if (counter < 3) {
       setCounter(counter + 1);
       setNewQueList(queList[counter]);
       
@@ -69,12 +75,7 @@ function QuizLayout() {
       console.log("@@",queList);
      
        // console.log(queList[i].attributes);
-        if (queList.attributes.answer === ansList) {
-          console.log("trueeee")
-          setFinalResult(prevVal => prevVal+=1);
-        } else {
-          setFinalResult(finalResult += 0);
-        }
+        
       
     
     console.log("####result",finalResult);
@@ -156,7 +157,7 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault1"
-                  value={queList[que].options?.a}
+                  value="a"
                   onChange={selectAns}
                   disabled={timerVal === 0 || !timerVal ? true : false}
                 />
@@ -170,7 +171,7 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault2"
-                  value={queList[que].options?.b}
+                  value="b"
                   onChange={selectAns}
                   disabled={timerVal === 0 || !timerVal ? true : false}
                 />
@@ -184,7 +185,7 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault3"
-                  value={queList[que].options?.c}
+                  value="c"
                   onChange={selectAns}
                   disabled={timerVal === 0 || !timerVal ? true : false}
                 />
@@ -198,7 +199,7 @@ function QuizLayout() {
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault4"
-                  value={queList[que].options?.d}
+                  value="d"
                   onChange={selectAns}
                   disabled={timerVal === 0 || !timerVal ? true : false}
                 />
