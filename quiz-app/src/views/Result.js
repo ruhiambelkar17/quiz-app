@@ -16,7 +16,8 @@ function Result() {
 
   function calculateFinalResult(){
     setPercentage((state/totalQue)*100);
-    if (percentage >= 65){
+    console.log("percentage",percentage)
+    if (percentage > 64){
       setResult("passed");
     }
     else
