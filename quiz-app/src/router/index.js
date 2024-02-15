@@ -9,6 +9,7 @@ import Home from "../views/Home"
 import QuizLayout from "../views/QuizLayout";
 import ContactUs from "../views/ContactUs";
 import App from "../App";
+import SignIn from "../views/SignIn";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
   {
     path: "/contact-us",
     element: <ContactUs />,
+  },
+  {
+    path: "/sign-in",
+    element: <SignIn />,
   },
   {
     path: "/get-by-id/:id",

@@ -1,33 +1,33 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
-export default function QuizLayout() {
-  const [queList, setQueList] = useState([]);
+// export default function QuizLayout() {
+//   const [queList, setQueList] = useState([]);
 
-  const [list, setList] = useState([]);
-  useEffect(() => {
-    async function fetchData() {
+//   const [list, setList] = useState([]);
+//   useEffect(() => {
+//     async function fetchData() {
       
-        fetch("http://localhost:1337/api/html-questions/")
-        .then((res) => 
-           res.json()
-    )
-        .then((data) => {
-            console.log("***@@@@@",data.data);
-             setList(data.data);
+//         fetch("http://localhost:1337/api/html-questions/")
+//         .then((res) => 
+//            res.json()
+//     )
+//         .then((data) => {
+//             console.log("***@@@@@",data.data);
+//              setList(data.data);
           
-        });
+//         });
     
-    }
-    fetchData();
-  }, []);
+//     }
+//     fetchData();
+//   }, []);
 
-  return (
-    <>
-      <p>Api response:</p>
-      {list &&
-        list.map((que) => {
-          return <a key={que.id}>{que.attributes.question}</a>;
-        })}
-    </>
-  );
-}
+//   return (
+//     <>
+//       <p>Api response:</p>
+//       {list &&
+//         list.map((que) => {
+//           return <a key={que.id}>{que.attributes.question}</a>;
+//         })}
+//     </>
+//   );
+// }

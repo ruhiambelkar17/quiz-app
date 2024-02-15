@@ -2,7 +2,6 @@ import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 function QuizLayout() {
   const [timerVal, setTimerVal] = useState(10);
   let [counter, setCounter] = useState(0);
@@ -10,40 +9,34 @@ function QuizLayout() {
   const navigate = useNavigate();
   const [ansList, setAnsList] = useState();
   let [finalResult, setFinalResult] = useState(0);
-  const [queList,setQueList]=useState([]);
-  const [newQueList,setNewQueList]=useState([]);
- 
+  const [queList, setQueList] = useState([]);
+  const [newQueList, setNewQueList] = useState([]);
 
   let i = 0;
   useEffect(() => {
-    console.log("*****",counter1) 
+    console.log("*****", counter1);
     if (i === 0) {
       i++;
       getQuestions();
       updateTimer();
-      
     }
-    
   }, [counter]);
 
   function selectAns(event) {
     let a = event.target.value;
     setAnsList(a);
     //setCounter1(counter1+1);
-    
   }
-  function getQuestions() { 
+  function getQuestions() {
     fetch("http://localhost:1337/api/html-questions/")
-    .then((res) => 
-       res.json()
-)
-    .then((data) => {
+      .then((res) => res.json())
+      .then((data) => {
         //console.log("***@@@@@",data.data);
-         setQueList(data.data[counter]);
-         //console.log("***@@@@@",queList.attributes.question );
-         setNewQueList(data.data[counter]);
-    });
-    
+        setQueList(data.data[counter]);
+        //console.log("***@@@@@",queList.attributes.question );
+        setNewQueList(data.data[counter]);
+      });
+
     //console.log("***@@@@@",queList);
   }
 
@@ -53,37 +46,26 @@ function QuizLayout() {
     setTimerVal((prevVal) => 10);
     updateTimer();
 
-    
-
     console.log("Ans list", ansList);
     //setCounter(counter + 1);
     if (queList.attributes.answer === ansList) {
-      console.log("trueeee")
-      setFinalResult(finalResult+=1);
+      console.log("trueeee");
+      setFinalResult((finalResult += 1));
     } else {
-      setFinalResult(finalResult += 0);
+      setFinalResult((finalResult += 0));
     }
     if (counter < 3) {
       setCounter(counter + 1);
       setNewQueList(queList[counter]);
-      
-     } 
-     else {
-      navigate("/result",{state:finalResult});
-    
-     }
-      console.log("@@",queList);
-     
-       // console.log(queList[i].attributes);
-        
-      
-    
-    console.log("####result",finalResult);
+    } else {
+      navigate("/result", { state: finalResult });
+    }
+    console.log("@@", queList);
 
-    
+    // console.log(queList[i].attributes);
+
+    console.log("####result", finalResult);
   }
-
-
 
   function resetJSIntervals() {
     // todo-improve
@@ -114,123 +96,105 @@ function QuizLayout() {
     }
   }
 
-
- 
-   
-  
   return (
     <div>
       <Navbar />
-     
+
       <div
         style={{ backgroundColor: "#F4FFFE" }}
         className="d-flex justify-content-center "
       >
         <div className="card w-75 my-5">
           <div className="card-body">
-          <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-between">
               <div className="d-inline-flex">
-                <p>Time:{timerVal || 0}</p> 
-               <p>ans: {ansList}</p> 
-              {/* <Timer
-                  onUpdateTimer={updateTimer}
-                  onResetTimer={resetTimer}
-                />  
-                */}
-                {/* {JSON.stringify(newQueList)} */}
+                <p>Time:{timerVal || 0}</p>
               </div>
-            </div> 
-          
-             <p className="card-text">
-              <div className="d-flex justify-content-between">
-                 
-                </div>
-                  {queList && 
-                  Object.keys(queList).map((que,i)=> ( 
-                    
-                  <div >
-              
-                  <p> Q.{counter + 1} {queList[que].question}</p>
-                   <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault1"
-                  value="a"
-                  onChange={selectAns}
-                  disabled={timerVal === 0 || !timerVal ? true : false}
-                />
-                <label class="form-check-label" for="flexRadioDefault1">
-                  {queList[que].options?.a}
-                </label>
-              </div> 
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault2"
-                  value="b"
-                  onChange={selectAns}
-                  disabled={timerVal === 0 || !timerVal ? true : false}
-                />
-                <label class="form-check-label" for="flexRadioDefault2">
-                  {queList[que].options?.b}
-                </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault3"
-                  value="c"
-                  onChange={selectAns}
-                  disabled={timerVal === 0 || !timerVal ? true : false}
-                />
-                <label class="form-check-label" for="flexRadioDefault3">
-                  {queList[que].options?.c}
-                </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault4"
-                  value="d"
-                  onChange={selectAns}
-                  disabled={timerVal === 0 || !timerVal ? true : false}
-                />
-                <label class="form-check-label" for="flexRadioDefault4">
-                  {queList[que].options?.d}
-                </label>
-              </div>  
-                  </div>
-                ))}   
-                </p> 
-              
-                  </div>
-              </div>
-              </div>
-
-              
-            
-            <div className="card-footer text-body-secondary d-flex justify-content-end">
-              <button
-                type="button"
-                style={{ backgroundColor: "#056D61", border: "#056D61" }}
-                className="btn btn-primary"
-                onClick={goToNextQuestion}
-              >
-                Next
-              </button>
             </div>
+
+            <p className="card-text">
+              {/* <div className="d-flex justify-content-between"></div> */}
+              {queList &&
+                Object.keys(queList).map((que, i) => (
+                  <div key={queList[i]}>
+                    <p>
+                      
+                      Q.{counter + 1} {queList[que].question}
+                    </p>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="flexRadioDefault"
+                        id="flexRadioDefault1"
+                        value="a"
+                        onChange={selectAns}
+                        disabled={timerVal === 0 || !timerVal ? true : false}
+                      />
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        {queList[que].options?.a}
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="flexRadioDefault"
+                        id="flexRadioDefault2"
+                        value="b"
+                        onChange={selectAns}
+                        disabled={timerVal === 0 || !timerVal ? true : false}
+                      />
+                      <label class="form-check-label" for="flexRadioDefault2">
+                        {queList[que].options?.b}
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="flexRadioDefault"
+                        id="flexRadioDefault3"
+                        value="c"
+                        onChange={selectAns}
+                        disabled={timerVal === 0 || !timerVal ? true : false}
+                      />
+                      <label class="form-check-label" for="flexRadioDefault3">
+                        {queList[que].options?.c}
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="flexRadioDefault"
+                        id="flexRadioDefault4"
+                        value="d"
+                        onChange={selectAns}
+                        disabled={timerVal === 0 || !timerVal ? true : false}
+                      />
+                      <label class="form-check-label" for="flexRadioDefault4">
+                        {queList[que].options?.d}
+                      </label>
+                    </div>
+                  </div>
+                ))}
+            </p>
           </div>
-       
-   
-   
+        </div>
+      </div>
+
+      <div className="card-footer text-body-secondary d-flex justify-content-end">
+        <button
+          type="button"
+          style={{ backgroundColor: "#056D61", border: "#056D61" }}
+          className="btn btn-primary"
+          onClick={goToNextQuestion}
+        >
+          Next
+        </button>
+      </div>
+    </div>
   );
 }
 
