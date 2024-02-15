@@ -10,6 +10,7 @@ import QuizLayout from "../views/QuizLayout";
 import ContactUs from "../views/ContactUs";
 import App from "../App";
 import SignIn from "../views/SignIn";
+import LogIn from "../views/LogIn";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: "/sign-in",
     element: <SignIn />,
+  },
+  {
+    path: "/log-in",
+    element: <LogIn />,
   },
   {
     path: "/get-by-id/:id",
