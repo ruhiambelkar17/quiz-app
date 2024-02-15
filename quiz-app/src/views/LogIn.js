@@ -1,27 +1,34 @@
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 export default function LogIn(){
     return (
        <>
-       <div className="m-5">
-            <h3>Log In</h3>
-            <form>
+       <Navbar />
+       
+        <div className="row " >
+            <div className="col-md-6 offset-3 border rounded my-5 shadow">
+                <h2 className="text-center mt-3 pb-3">Log In</h2>
+                
                 <div className="mb-3">
-                    <label className="form-label" for="name" > User Name</label>
-                    <input className="form-control" type="text" id="name" />
-                </div>
+                    <label className="form-label" for="fullname" >User Name</label>
+                    <input className="form-control" id="fullname" />
+                </div>               
+                
                 <div className="mb-3">
-                    <label className="form-label" for="name" > Password</label>
-                    <textarea className="form-control" type="text" id="name" />
+                    <label className="form-label" for="fullname" >Password</label>
+                    <input className="form-control" id="fullname" />
                 </div>
-                <div>
-                    <button className="btn btn-primary"> Submit</button>
+                
+                <div className="mb-3">
+                    <button className="btn btn-primary" style={{ backgroundColor: "#056D61", border: "#056D61" }} type="submit">Button</button>
                 </div>
+                
                 <hr />
-                <p>Do not have account? <a className="nav-link"  href="#link">
-            <Link to={'/sign-in'}>
-            Sign In</Link>
-            </a></p>
-            </form>
+                    <p className="text-center">Do not have account? <a className="nav-link"  href="#link">
+                <Link to={'/sign-in'}>
+                Sign In</Link>
+                </a></p>
+            </div>
         </div>
        </>
     )
