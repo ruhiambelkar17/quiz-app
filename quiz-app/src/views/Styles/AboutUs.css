@@ -3,11 +3,16 @@
     --p: 25px;
     --R: 55.9px /*sqrt(var(--size)*var(--size) + var(--p)*var(--p))*/;
     
-    height: 200px;
-  
+    height: 500px;
     -webkit-mask:
-      radial-gradient(var(--R) at 50% calc(100% - (var(--size) + var(--p))),#ffffff 99%,#0000 101%) calc(50% - 2*var(--size)) 0/calc(4*var(--size)) 100%,
-      radial-gradient(var(--R) at 50% calc(100% + var(--p)),#0000 99%,#056D61 101%) 50% calc(100% - var(--size))/calc(4*var(--size)) 100% repeat-x;
+      radial-gradient(var(--R) at 70% calc(100% - (var(--size) + var(--p))),#ffffff 99%,#0000 101%) calc(50% - 2*var(--size)) 0/calc(4*var(--size)) 100%,
+      radial-gradient(var(--R) at 70% calc(100% + var(--p)),#0000 99%,#056D61 101%) 50% calc(100% - var(--size))/calc(4*var(--size)) 100% repeat-x;
     background:linear-gradient(90deg,#056D61,#ffffff);  
     border: none;
+  }
+
+  .box p {
+    margin-top: 150px;
+    color: white;
+    font-size: 70px;
   }
