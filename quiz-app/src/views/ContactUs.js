@@ -6,15 +6,15 @@ export default function ContactUs(){
             <form>
                 <div className="mb-3">
                     <label className="form-label" for="name" > Name</label>
-                    <input className="form-control" type="text" id="name" />
+                    <input className="form-control" type="text" id="name" required />
                 </div>
                 <div className="mb-3">
                     <label className="form-label" for="name" > E-mail</label>
-                    <input className="form-control" type="text" id="name" />
+                    <input className="form-control" type="text" id="name" required />
                 </div>
                 <div className="mb-3">
                     <label className="form-label" for="name" > Your message</label>
-                    <textarea className="form-control" type="text" id="name" />
+                    <textarea className="form-control" type="text" id="name" required/>
                 </div>
                 <div>
                     <button className="btn btn-primary"> Submit</button>
