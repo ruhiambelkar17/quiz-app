@@ -2,13 +2,19 @@ import Navbar from "../components/Navbar";
 import { useState } from "react";
 
 export default function SignIn() {
-    const [inputs, setInputs] = useState([{ fullName: "", username: "",email:"",mobileno:"",password:"",repeatpassword:"" }]);
+    const [inputs, setInputs] = useState([{ fullname: "", username: "",email:"",mobileno:"",password:"",repeatpassword:"" }]);
 
     const handleChange = (event, index) => {
         let { name, value } = event.target;
         let onChangeValue = [...inputs];
+        console.log(onChangeValue)
         onChangeValue[index][name] = value;
         setInputs(onChangeValue);
+      };
+
+      const addUser = () => {
+        setInputs([...inputs, { fullname: "", username: "",email:"",mobileno:"",password:"",repeatpassword:"" }]);
+        console.log("**users",inputs);
       };
 
   return (
@@ -23,21 +29,21 @@ export default function SignIn() {
                <label className="form-label" for="fullname">
                  Full Name
                </label>
-               <input className="form-control" id="fullname" value={item.fullName}
+               <input className="form-control" type="text" name="fullname"  value={item.fullname}
             onChange={(event) => handleChange(event, index)} required/>
              </div>
              <div className="mb-3">
                <label className="form-label" for="username" >
                  User Name
                </label>
-               <input className="form-control" id="username" value={item.username}
+               <input className="form-control" name="username" value={item.username}
             onChange={(event) => handleChange(event, index)} required/>
              </div>
              <div className="mb-3">
                <label className="form-label" for="email">
                  E-Mail
                </label>
-               <input className="form-control" id="email" value={item.email}
+               <input className="form-control" name="email" value={item.email}
             onChange={(event) => handleChange(event, index)} required/>
              </div>
    
@@ -45,7 +51,7 @@ export default function SignIn() {
                <label className="form-label" for="mobileno">
                  Mobile Number
                </label>
-               <input className="form-control" id="mobileno" type="number" value={item.mobileno}
+               <input className="form-control" name="mobileno" type="number" value={item.mobileno}
             onChange={(event) => handleChange(event, index)} required />
              
                {/* <div className="input-group">
@@ -88,28 +94,31 @@ export default function SignIn() {
                <label className="form-label" for="password">
                  Password
                </label>
-               <input className="form-control" id="password" type="password" value={item.password}
+               <input className="form-control" name="password" type="password" value={item.password}
             onChange={(event) => handleChange(event, index)} required />
              </div>
              <div className="mb-3">
                <label className="form-label" for="repeatpassword">
                  Repeat Password
                </label>
-               <input className="form-control" id="repeatpassword" type="password" value={item.repeatpassword}
+               <input className="form-control" name="repeatpassword" type="password" value={item.repeatpassword}
             onChange={(event) => handleChange(event, index)} required />
              </div>
              <div className="mb-3">
                <button
                  className="btn btn-primary"
                  style={{ backgroundColor: "#056D61", border: "#056D61" }}
-                 type="submit"
+                 type="button"
+                 onClick={addUser}
                >
                  Button
                </button>
              </div>
             </form>
+            
          ))}
         </div>
+        <div className="body"> {JSON.stringify(inputs)} </div>
       </div>
     </>
   );
