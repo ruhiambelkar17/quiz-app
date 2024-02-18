@@ -32,8 +32,10 @@ function Navbar() {
 
           <li className="nav-item p-3">
             <a className="nav-link" href="#link">
-              About
+            <Link to={'/about-us'}>
+            About</Link>
             </a>
+           
           </li>
           <li className="nav-item p-3">
             <a className="nav-link"  href="#link">
