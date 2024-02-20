@@ -18,7 +18,14 @@ export default function SignIn() {
         fetch("http://localhost:1337/api/user-accounts", {
             method: "POST",
             body: JSON.stringify({
-              ...inputs
+              data:{
+                fullName:inputs[0].fullname,
+                userName:inputs[0].username,
+                email:inputs[0].email,
+                mobileNumber:inputs[0].mobileno,
+                password:inputs[0].password,
+                repeatPassword:inputs[0].repeatpassword
+              }
             }),
             headers: {
               "Content-type": "application/json; charset=UTF-8",
@@ -26,7 +33,7 @@ export default function SignIn() {
           })
             .then(response => response.json())
             .then(data => {
-              setInputs([...inputs, data.data])
+              setInputs([...inputs, data])
               
        
             })
