@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Navbar from "../components/Navbar";
 
 export default function ContactUs() {
   const [inputs, setInputs] = useState([
@@ -19,7 +20,10 @@ export default function ContactUs() {
   };
   return (
     <>
-      <div className="m-5">
+    <Navbar></Navbar>
+      <div className="row">
+        <div className="col-md-6 offset-3 rounded shadow mt-5">
+        <div className="m-5">
         <h3>Contact Us</h3>
        {inputs.map((item,index)=>(
          <form key={index}>
@@ -70,6 +74,8 @@ export default function ContactUs() {
          </div>
        </form>
        ))}
+      </div>
+        </div>
       </div>
     </>
   );
