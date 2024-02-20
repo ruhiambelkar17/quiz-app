@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 export default function SignIn() {
     const [inputs, setInputs] = useState([{ fullname: "", username: "",email:"",mobileno:"",password:"",repeatpassword:"" }]);
@@ -15,7 +15,29 @@ export default function SignIn() {
       const addUser = () => {
         setInputs([...inputs, { fullname: "", username: "",email:"",mobileno:"",password:"",repeatpassword:"" }]);
         console.log("**users",inputs);
+        fetch("http://localhost:1337/api/user-accounts", {
+            method: "POST",
+            body: JSON.stringify({
+              ...inputs
+            }),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+          })
+            .then(response => response.json())
+            .then(data => {
+              setInputs([...inputs, data.data])
+              
+       
+            })
       };
+
+      useEffect(() => {
+        // POST request using fetch inside useEffect React hook
+       
+
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+    }, []);
 
   return (
     <>
