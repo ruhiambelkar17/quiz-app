@@ -15,28 +15,32 @@ export default function SignIn() {
       const addUser = () => {
         setInputs([...inputs, { fullname: "", username: "",email:"",mobileno:"",password:"",repeatpassword:"" }]);
         console.log("**users",inputs);
-        fetch("http://localhost:1337/api/user-accounts", {
-            method: "POST",
-            body: JSON.stringify({
-              data:{
-                fullName:inputs[0].fullname,
-                userName:inputs[0].username,
-                email:inputs[0].email,
-                mobileNumber:inputs[0].mobileno,
-                password:inputs[0].password,
-                repeatPassword:inputs[0].repeatpassword
-              }
-            }),
-            headers: {
-              "Content-type": "application/json; charset=UTF-8",
-            },
-          })
-            .then(response => response.json())
-            .then(data => {
-              setInputs([...inputs, data])
-              
+        if ([...inputs]){
+            fetch("http://localhost:1337/api/user-accounts", {
+                method: "POST",
+                body: JSON.stringify({
+                  data:{
+                    fullName:inputs[0].fullname,
+                    userName:inputs[0].username,
+                    email:inputs[0].email,
+                    mobileNumber:inputs[0].mobileno,
+                    password:inputs[0].password,
+                    repeatPassword:inputs[0].repeatpassword
+                  }
+                }),
+                headers: {
+                  "Content-type": "application/json; charset=UTF-8",
+                },
+              })
+                .then(response => response.json()
+                )
+                .then(data => {
+                  setInputs([...inputs, data])
+                  
+                  
+                })
+        }
        
-            })
       };
 
       useEffect(() => {
