@@ -34,10 +34,10 @@ export default function LogIn(){
         setInputs(onChangeValue);
       }
       function onLogIn(){
-        console.log("users@@@@",users.length);
+        console.log("users@@@@",users[0].attributes.password);
         console.log("imputs@@@@",inputs)
-       for(let i=0;i<=users.length;i++){
-        if(inputs[0].username === users[i].attributes.userName ){
+       for(let i=0;i<users.length;i++){
+        if(inputs[0].username === users[i].attributes.userName  ){
             navigate("/");  
         }
        }
