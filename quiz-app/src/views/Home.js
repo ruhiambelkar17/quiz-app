@@ -43,9 +43,9 @@ function Home() {
       <div className="row d-flex justify-content-center mt-5 mx-1">
         {quizDomains.map((item,index)=>(
           <div className="col-md-3 rounded me-5 d-flex justify-content-center align-items-center shadow" style={{backgroundColor:"#056D61", height:"20vh"}}>
-          <a href="#" > <Link className="link" to={item.pathName}>
+           <Link className="link" to={item.pathName}>
                 {item.name}</Link>
-                </a>
+                
           </div>
         ))}
       </div>
